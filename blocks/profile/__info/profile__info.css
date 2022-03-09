@@ -1,0 +1,14 @@
+.profile__info {
+  margin: 26px auto 32px;
+  position: relative;
+  box-sizing: border-box;
+  max-width: 190px;
+}
+
+@media screen and (min-width: 600px) {
+  .profile__info {
+    justify-self: start;
+    margin: auto auto auto 30px;
+    max-width: 300px;
+  }
+}
