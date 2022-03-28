@@ -6,24 +6,21 @@ const jobInput = document.querySelector(".popup__input_type_job");
 const formElement = document.querySelector(".popup__form");
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__subtitle");
-const cardPopUp = document.querySelector(".card-form");
-const openCardPopUp = document.querySelector(".profile__button");
-const closeCardPopUp = document.querySelector(".card-toggle");
 
 function openPopup(popUpElement) {
     popUpElement.classList.add("popup_opened");
-};
+}
 
 function closePopup(popUpElement) {
     popUpElement.classList.remove("popup_opened");
-};
+}
 
-openProfilePopUp.addEventListener("click", function() {
+openProfilePopUp.addEventListener("click", () => {
     openPopup(profilePopUp);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 });
-closeProfilePopUp.addEventListener("click", function() {
+closeProfilePopUp.addEventListener("click", () => {
     closePopup(profilePopUp);
 });
 
@@ -36,10 +33,69 @@ function handleProfileFormSubmit(evt) {
 
 formElement.addEventListener("submit", handleProfileFormSubmit);
 
-openCardPopUp.addEventListener("click", function() {
+// 5 sprint
+// Added second PopUp
+
+const cardPopUp = document.querySelector(".card-form");
+const openCardPopUp = document.querySelector(".profile__button");
+const closeCardPopUp = document.querySelector(".card-toggle");
+
+openCardPopUp.addEventListener("click", () => {
     openPopup(cardPopUp);
 });
 
-closeCardPopUp.addEventListener("click", function() {
+closeCardPopUp.addEventListener("click", () => {
     closePopup(cardPopUp);
 });
+
+// Added cardDeleteButton
+
+const cardDeleteButton = [
+    ...document.querySelectorAll(".card__delete-button"),
+].forEach((item) => {
+    item.addEventListener("click", () => {
+        item.parentElement.classList.add("card_deleted");
+    });
+});
+
+// Added like algorithm
+
+const cardLikeButton = [...document.querySelectorAll(".card__button")].forEach(
+    (item) => {
+        item.addEventListener("click", () => {
+            item.classList.toggle("card__button_active");
+        });
+    }
+);
+
+const initialCards = [{
+        name: "Архыз",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+    },
+    {
+        name: "Челябинская область",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+    },
+    {
+        name: "Иваново",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+    },
+    {
+        name: "Камчатка",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+    },
+    {
+        name: "Холмогорский район",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+    },
+    {
+        name: "Байкал",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+    },
+];
+
+const cardTemplate = document.querySelector(".card-template").content;
+const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+cardElement.querySelector(".card__image").src = initialCards.link;
+cardElement.querySelector(".card__title").textContent = initialCards.name;
+cardTemplate.append(cardElement);
