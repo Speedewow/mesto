@@ -1,88 +1,104 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./page/index.css" />
     <title>mesto</title>
-  </head>
-  <body class="root">
+</head>
+
+<body class="root">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="Логотип" />
+        <img class="header__logo" src="./images/logo.svg" alt="Логотип" />
     </header>
     <main class="main">
-      <section class="profile">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар" />
-        <div class="profile__info">
-          <h1 class="profile__title">Жак Ив Кусто</h1>
-          <button class="profile__edit-button"></button>
-          <p class="profile__subtitle">Исследователь океана</p>
-        </div>
-        <button class="profile__button"></button>
-      </section>
+        <section class="profile">
+            <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар" />
+            <div class="profile__info">
+                <h1 class="profile__title">Жак Ив Кусто</h1>
+                <button class="profile__edit-button"></button>
+                <p class="profile__subtitle">Исследователь океана</p>
+            </div>
+            <button class="profile__button"></button>
+        </section>
 
-      <section class="cards">
-        <article class="card">
-          <img class="card__image" src="./images/karachevsk.jpg" alt="Карачаевск" />
-          <div class="card__container">
-            <h2 class="card__title">Карачаевск</h2>
-            <button class="card__button"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img class="card__image" src="./images/elbrus.png" alt="Ельбрус" />
-          <div class="card__container">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button class="card__button"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img class="card__image" src="./images/dombai.png" alt="Домбай" />
-          <div class="card__container">
-            <h2 class="card__title">Домбай</h2>
-            <button class="card__button"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img class="card__image" src="./images/elbrus.png" alt="Ельбрус" />
-          <div class="card__container">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button class="card__button"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img class="card__image" src="./images/dombai.png" alt="Домбай" />
-          <div class="card__container">
-            <h2 class="card__title">Домбай</h2>
-            <button class="card__button"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img class="card__image" src="./images/karachevsk.jpg" alt="Карачаевск" />
-          <div class="card__container">
-            <h2 class="card__title">Карачаевск</h2>
-            <button class="card__button"></button>
-          </div>
-        </article>
-      </section>
+        <section class="cards">
+            <article class="card">
+                <img class="card__image" src="./images/karachevsk.jpg" alt="Карачаевск" />
+                <div class="card__container">
+                    <h2 class="card__title">Карачаевск</h2>
+                    <button class="card__button"></button>
+                </div>
+            </article>
+            <article class="card">
+                <img class="card__image" src="./images/elbrus.png" alt="Ельбрус" />
+                <div class="card__container">
+                    <h2 class="card__title">Гора Эльбрус</h2>
+                    <button class="card__button"></button>
+                </div>
+            </article>
+            <article class="card">
+                <img class="card__image" src="./images/dombai.png" alt="Домбай" />
+                <div class="card__container">
+                    <h2 class="card__title">Домбай</h2>
+                    <button class="card__button"></button>
+                </div>
+            </article>
+            <article class="card">
+                <img class="card__image" src="./images/elbrus.png" alt="Ельбрус" />
+                <div class="card__container">
+                    <h2 class="card__title">Гора Эльбрус</h2>
+                    <button class="card__button"></button>
+                </div>
+            </article>
+            <article class="card">
+                <img class="card__image" src="./images/dombai.png" alt="Домбай" />
+                <div class="card__container">
+                    <h2 class="card__title">Домбай</h2>
+                    <button class="card__button"></button>
+                </div>
+            </article>
+            <article class="card">
+                <img class="card__image" src="./images/karachevsk.jpg" alt="Карачаевск" />
+                <div class="card__container">
+                    <h2 class="card__title">Карачаевск</h2>
+                    <button class="card__button"></button>
+                </div>
+            </article>
+        </section>
     </main>
     <footer class="footer">
-      <p class="footer__copyright">© 2022 Mesto Russia</p>
+        <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
-    <section class="popup">
-      <div class="popup__container">
-        <button class="popup__toggle"></button>
-        <form class="popup__form" name="profile-form">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <fieldset class="popup__fieldset">
-            <input class="popup__input popup__input_type_name" type="text" name="profile-name" placeholder="Введите имя" autocomplete="off" />
-            <input class="popup__input popup__input_type_job" type="text" name="profile-job" placeholder="Введите профессию" autocomplete="off" />
-          </fieldset>
-          <button class="popup__submit-button" type="submit">Сохранить</button>
-        </form>
-      </div>
+    <section class="popup profile-form">
+        <div class="popup__container">
+            <button class="popup__toggle profile-toggle"></button>
+            <form class="popup__form" name="profile-form">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <fieldset class="popup__fieldset">
+                    <input class="popup__input popup__input_type_name" type="text" name="profile-name" placeholder="Введите имя" autocomplete="off" />
+                    <input class="popup__input popup__input_type_job" type="text" name="profile-job" placeholder="Введите профессию" autocomplete="off" />
+                </fieldset>
+                <button class="popup__submit-button" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </section>
+    <section class="popup card-form">
+        <div class="popup__container">
+            <button class="popup__toggle card-toggle"></button>
+            <form class="popup__form" name="card-form">
+                <h2 class="popup__title">Новое место</h2>
+                <fieldset class="popup__fieldset">
+                    <input class="popup__input popup__input_type_card-name" type="text" name="card-name" placeholder="Название" autocomplete="off" />
+                    <input class="popup__input popup__input_type_card-link" type="link" name="card-link" placeholder="Ссылка на картинку" autocomplete="off" />
+                </fieldset>
+                <button class="popup__submit-button" type="submit">Создать</button>
+            </form>
+        </div>
     </section>
     <script src="./scripts/index.js"></script>
-  </body>
+</body>
+
 </html>
