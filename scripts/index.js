@@ -134,3 +134,24 @@ const cardLikeButton = [...document.querySelectorAll(".card__button")].forEach(
         });
     }
 );
+
+// Added PopupPhoto
+
+const imagePopUp = document.querySelector(".popup-image");
+const openImagePopUp = [...document.querySelectorAll(".card__image")].forEach(
+    (item) => {
+        item.addEventListener("click", () => {
+            openPopup(imagePopUp);
+            document.querySelector(".popup__image").src = item.getAttribute("src");
+            document.querySelector(".popup__image-title").textContent = item.nextElementSibling.textContent;
+        });
+    }
+);
+
+const closeImagePopUp = [...document.querySelectorAll(".image-toggle")].forEach(
+    (item) => {
+        item.addEventListener("click", () => {
+            closePopup(imagePopUp);
+        });
+    }
+);

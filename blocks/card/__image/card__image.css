@@ -8,3 +8,7 @@
     margin: 0;
     padding: 0;
 }
+
+.card__image:hover {
+    cursor: pointer;
+}
