@@ -1,4 +1,6 @@
 .card {
-  background-color: white;
-  border-radius: 3%;
+    background-color: white;
+    border-radius: 3%;
+    position: relative;
+    max-width: 282px;
 }
