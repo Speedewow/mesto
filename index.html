@@ -23,66 +23,20 @@
             </div>
             <button class="profile__button"></button>
         </section>
-        <template class="card-template">
-        <section class="cards">
-          <article class="card">
-            <button class="card__delete-button"></button>
-            <img
-              class="card__image"
-              src="./images/karachevsk.jpg"
-              alt="Карачаевск"
-            />
-            <div class="card__container">
-              <h2 class="card__title">Карачаевск</h2>
-              <button class="card__button"></button>
-            </div>
-          </article>
-          <article class="card">
-            <button class="card__delete-button"></button>
-            <img class="card__image" src="./images/elbrus.png" alt="Ельбрус" />
-            <div class="card__container">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__button"></button>
-            </div>
-          </article>
-          <article class="card">
-            <button class="card__delete-button"></button>
-            <img class="card__image" src="./images/dombai.png" alt="Домбай" />
-            <div class="card__container">
-              <h2 class="card__title">Домбай</h2>
-              <button class="card__button"></button>
-            </div>
-          </article>
-          <article class="card">
-            <button class="card__delete-button"></button>
-            <img class="card__image" src="./images/elbrus.png" alt="Ельбрус" />
-            <div class="card__container">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__button"></button>
-            </div>
-          </article>
-          <article class="card">
-            <button class="card__delete-button"></button>
-            <img class="card__image" src="./images/dombai.png" alt="Домбай" />
-            <div class="card__container">
-              <h2 class="card__title">Домбай</h2>
-              <button class="card__button"></button>
-            </div>
-          </article>
-          <article class="card">
-            <button class="card__delete-button"></button>
-            <img
-              class="card__image"
-              src="./images/karachevsk.jpg"
-              alt="Карачаевск"
-            />
-            <div class="card__container">
-              <h2 class="card__title">Карачаевск</h2>
-              <button class="card__button"></button>
-            </div>
-          </article>
+        <section>
+            <ul class="cards">
+                <template class="card-template">
+                    <li class="card">
+                        <button class="card__delete-button"></button>
+                        <img class="card__image" alt="Картинка" />
+                        <div class="card__container">
+                          <h2 class="card__title"></h2>
+                          <button class="card__button"></button>
+                        </div>
+                    </li>
+                  </template>
+            </ul>
         </section>
-      </template>
     </main>
     <footer class="footer">
         <p class="footer__copyright">© 2022 Mesto Russia</p>
@@ -103,7 +57,7 @@
     <section class="popup card-form">
         <div class="popup__container">
             <button class="popup__toggle card-toggle"></button>
-            <form class="popup__form" name="card-form">
+            <form class="popup__form card__form" name="card-form">
                 <h2 class="popup__title">Новое место</h2>
                 <fieldset class="popup__fieldset">
                     <input class="popup__input popup__input_type_card-name" type="text" name="card-name" placeholder="Название" autocomplete="off" />

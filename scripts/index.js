@@ -48,25 +48,7 @@ closeCardPopUp.addEventListener("click", () => {
     closePopup(cardPopUp);
 });
 
-// Added cardDeleteButton
-
-const cardDeleteButton = [
-    ...document.querySelectorAll(".card__delete-button"),
-].forEach((item) => {
-    item.addEventListener("click", () => {
-        item.parentElement.classList.add("card_deleted");
-    });
-});
-
-// Added like algorithm
-
-const cardLikeButton = [...document.querySelectorAll(".card__button")].forEach(
-    (item) => {
-        item.addEventListener("click", () => {
-            item.classList.toggle("card__button_active");
-        });
-    }
-);
+// Card Array from JS algorithm
 
 const initialCards = [{
         name: "Архыз",
@@ -94,8 +76,61 @@ const initialCards = [{
     },
 ];
 
-const cardTemplate = document.querySelector(".card-template").content;
-const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-cardElement.querySelector(".card__image").src = initialCards.link;
-cardElement.querySelector(".card__title").textContent = initialCards.name;
-cardTemplate.append(cardElement);
+const cardContainer = document.querySelector(".cards");
+const createCard = (cardName, cardLink) => {
+    const cardTemplate = document.querySelector(".card-template");
+    const cardElement = cardTemplate.content
+        .querySelector(".card")
+        .cloneNode(true);
+    cardElement.querySelector(".card__title").textContent = cardName;
+    cardElement.querySelector(".card__image").src = cardLink;
+    return cardElement;
+};
+
+const cards = initialCards.map((item) => {
+    let cardName = item.name;
+    let cardLink = item.link;
+    return createCard(cardName, cardLink);
+});
+
+cardContainer.append(...cards);
+
+// Added new card algorithm
+
+const inputCardName = document.querySelector(".popup__input_type_card-name");
+const inputCardLink = document.querySelector(".popup__input_type_card-link");
+const cardForm = document.querySelector(".card__form");
+
+const newCard = (name, link) => {
+    cardContainer.prepend(createCard(name, link));
+};
+
+function handleCardFormSave(evt) {
+    evt.preventDefault();
+    let cardName = inputCardName.value;
+    let cardLink = inputCardLink.value;
+    cardPopUp.classList.remove("popup_opened");
+    newCard(cardName, cardLink);
+}
+
+cardForm.addEventListener("submit", handleCardFormSave);
+
+// Added cardDeleteButton
+
+const cardDeleteButton = [
+    ...document.querySelectorAll(".card__delete-button"),
+].forEach((item) => {
+    item.addEventListener("click", () => {
+        item.parentElement.classList.add("card_deleted");
+    });
+});
+
+// Added like algorithm
+
+const cardLikeButton = [...document.querySelectorAll(".card__button")].forEach(
+    (item) => {
+        item.addEventListener("click", () => {
+            item.classList.toggle("card__button_active");
+        });
+    }
+);
