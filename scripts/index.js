@@ -82,7 +82,6 @@ const createCard = (cardName, cardLink) => {
     const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
     cardElement.querySelector(".card__title").textContent = cardName;
     cardElement.querySelector(".card__image").src = cardLink;
-    console.log(cardElement);
     return cardElement;
 };
 
