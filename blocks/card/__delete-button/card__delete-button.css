@@ -8,6 +8,7 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    opacity: 1;
 }
 
 .card__delete-button:hover {

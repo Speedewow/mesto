@@ -1,18 +1,22 @@
 .cards {
     display: flex;
     flex-direction: column;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     row-gap: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
-@media screen and (min-width: 619px) {
+@media screen and (min-width: 600px) {
     .cards {
         max-width: 880px;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: repeat(2, auto);
         grid-template-rows: repeat(3, 1fr);
-        gap: 20px 17px;
+        gap: 20px 25px;
     }
 }
 
@@ -20,6 +24,8 @@
     .cards {
         max-width: 880px;
         display: grid;
+        align-items: center;
+        justify-content: center;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, 1fr);
         gap: 20px 17px;
