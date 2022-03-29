@@ -36,7 +36,7 @@ formElement.addEventListener("submit", handleProfileFormSubmit);
 // 5 sprint
 // Added card PopUp
 
-const cardPopUp = document.querySelector(".card-form");
+const cardPopUp = document.querySelector(".card-form-section");
 const openCardPopUp = document.querySelector(".profile__button");
 const closeCardPopUp = document.querySelector(".card-toggle");
 
@@ -95,7 +95,7 @@ cardContainer.append(...cards);
 
 const inputCardName = document.querySelector(".popup__input_type_card-name");
 const inputCardLink = document.querySelector(".popup__input_type_card-link");
-const cardForm = document.querySelector(".card__form");
+const cardForm = document.querySelector(".card-form");
 
 const newCard = (name, link) => {
     cardContainer.prepend(createCard(name, link));
