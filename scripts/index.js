@@ -7,7 +7,6 @@ const profilePopUp = document.querySelector(".profile-popup");
 const profileNameInput = profilePopUp.querySelector(".profile-name-input");
 const profileJobInput = profilePopUp.querySelector(".profile-job-input");
 const profileForm = profilePopUp.querySelector(".profile-form");
-
 const openCardPopUp = document.querySelector(".profile__button");
 const cardContainer = document.querySelector(".cards");
 const cardTemplate = document.querySelector(".card-template");
