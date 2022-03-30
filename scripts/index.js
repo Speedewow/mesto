@@ -1,4 +1,4 @@
-const popUp = document.querySelectorAll(".popup");
+const popUps = document.querySelectorAll(".popup");
 
 const openProfilePopUp = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__title");
@@ -16,7 +16,7 @@ const cardLinkInput = cardPopUp.querySelector(".card-link-input");
 const cardForm = cardPopUp.querySelector(".card-form");
 
 
-const imagePopUp = document.querySelector(".image-popup");
+const imagePopUps = document.querySelector(".image-popup");
 const image = imagePopUp.querySelector(".popup__image");
 const imageTitle = imagePopUp.querySelector(".popup__image-title");
 
