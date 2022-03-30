@@ -1,4 +1,4 @@
-const popUp = document.querySelectorAll(".popup");
+const popUps = document.querySelectorAll(".popup");
 
 const openProfilePopUp = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__title");
@@ -54,7 +54,7 @@ function closePopup(popUpElement) {
     popUpElement.classList.remove("popup_opened");
 }
 
-popUp.forEach((popup) => {
+popUps.forEach((popup) => {
     popup.addEventListener("click", (event) => {
         if (event.target.classList.contains("popup__toggle"))
             closePopup(popup);
