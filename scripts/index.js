@@ -1,4 +1,4 @@
-const popUp = document.querySelectorAll(".popup");
+const popUps = document.querySelectorAll(".popup");
 
 const openProfilePopUp = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__title");
@@ -7,6 +7,7 @@ const profilePopUp = document.querySelector(".profile-popup");
 const profileNameInput = profilePopUp.querySelector(".profile-name-input");
 const profileJobInput = profilePopUp.querySelector(".profile-job-input");
 const profileForm = profilePopUp.querySelector(".profile-form");
+
 const openCardPopUp = document.querySelector(".profile__button");
 const cardContainer = document.querySelector(".cards");
 const cardTemplate = document.querySelector(".card-template");
@@ -54,7 +55,7 @@ function closePopup(popUpElement) {
     popUpElement.classList.remove("popup_opened");
 }
 
-popUp.forEach((popup) => {
+popUps.forEach((popup) => {
     popup.addEventListener("click", (event) => {
         if (event.target.classList.contains("popup__toggle"))
             closePopup(popup);
