@@ -59,8 +59,12 @@ popUps.forEach((popup) => {
     popup.addEventListener("click", (event) => {
         if (event.target.classList.contains("popup__toggle"))
             closePopup(popup);
-    })
-})
+    });
+    popup.addEventListener("keydown", (event) => {
+        if (event.key === "Escape")
+            closePopup(popup);
+    });
+});
 
 openProfilePopUp.addEventListener("click", () => {
     openPopup(profilePopUp);
