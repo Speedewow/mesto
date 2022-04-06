@@ -44,11 +44,13 @@
     <section class="popup profile-popup">
         <div class="popup__container">
             <button class="popup__toggle"></button>
-            <form class="popup__form profile-form" name="profile-form">
+            <form class="popup__form profile-form" id="profile-form" novalidate>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <fieldset class="popup__fieldset">
-                    <input class="popup__input profile-name-input" type="text" name="profile-name" placeholder="Введите имя" autocomplete="off" />
-                    <input class="popup__input profile-job-input" type="text" name="profile-job" placeholder="Введите профессию" autocomplete="off" />
+                    <input class="popup__input profile-name-input" type="text" id="profile-name" placeholder="Введите имя" autocomplete="off" minlength="2" maxlength="40" required/>
+                    <span class="popup__error profile-name-error"></span>
+                    <input class="popup__input profile-job-input" type="text" id="profile-job" placeholder="Введите профессию" autocomplete="off" minlength="2" maxlength="200" required/>
+                    <span class="popup__error profile-job-error"></span>
                 </fieldset>
                 <button class="popup__submit-button" type="submit">Сохранить</button>
             </form>
@@ -57,13 +59,15 @@
     <section class="popup card-popup">
         <div class="popup__container">
             <button class="popup__toggle"></button>
-            <form class="popup__form card-form" name="card-form">
+            <form class="popup__form card-form" id="card-form" novalidate>
                 <h2 class="popup__title">Новое место</h2>
                 <fieldset class="popup__fieldset">
-                    <input class="popup__input card-name-input" type="text" name="card-name" placeholder="Название" autocomplete="off" />
-                    <input class="popup__input card-link-input" type="link" name="card-link" placeholder="Ссылка на картинку" autocomplete="off" />
+                    <input class="popup__input card-name-input" type="text" id="card-name" placeholder="Название" autocomplete="off" minlength="2" maxlength="30" required/>
+                    <span class="popup__error card-name-error"></span>
+                    <input class="popup__input card-link-input" type="url" id="card-link" placeholder="Ссылка на картинку" autocomplete="off" required/>
+                    <span class="popup__error card-link-error"></span>
                 </fieldset>
-                <button class="popup__submit-button" type="submit">Создать</button>
+                <button class="popup__submit-button " type="submit">Создать</button>
             </form>
         </div>
     </section>
@@ -75,6 +79,7 @@
         </div>
     </section>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 
 </html>

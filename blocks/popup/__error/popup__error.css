@@ -1,0 +1,7 @@
+.popup__error {
+    visibility: hidden;
+    margin-top: 5px;
+    color: red;
+    font-size: 10px;
+    height: 10px;
+}
