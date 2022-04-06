@@ -1,4 +1,4 @@
-const popUp = document.querySelectorAll(".popup");
+const popUps = document.querySelectorAll(".popup");
 
 const openProfilePopUp = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__title");
@@ -7,6 +7,7 @@ const profilePopUp = document.querySelector(".profile-popup");
 const profileNameInput = profilePopUp.querySelector(".profile-name-input");
 const profileJobInput = profilePopUp.querySelector(".profile-job-input");
 const profileForm = profilePopUp.querySelector(".profile-form");
+
 const openCardPopUp = document.querySelector(".profile__button");
 const cardContainer = document.querySelector(".cards");
 const cardTemplate = document.querySelector(".card-template");
@@ -14,7 +15,6 @@ const cardPopUp = document.querySelector(".card-popup");
 const cardNameInput = cardPopUp.querySelector(".card-name-input");
 const cardLinkInput = cardPopUp.querySelector(".card-link-input");
 const cardForm = cardPopUp.querySelector(".card-form");
-
 
 const imagePopUp = document.querySelector(".image-popup");
 const image = imagePopUp.querySelector(".popup__image");
@@ -46,25 +46,42 @@ const initialCards = [{
     },
 ];
 
+
 function openPopup(popUpElement) {
+    enableValidation({
+        formSelector: '.popup__form',
+        inputSelector: '.popup__input',
+        submitButtonSelector: '.popup__submit-button',
+        inactiveButtonClass: 'popup__submit-button_disabled',
+        inputErrorClass: 'popup__input_type_error',
+        errorClass: 'popup__error_visible'
+    });
     popUpElement.classList.add("popup_opened");
+    popUpElement.addEventListener("keydown", (event) => {
+        if (event.key === "Escape")
+            closePopup(popUpElement);
+    });
 }
 
 function closePopup(popUpElement) {
     popUpElement.classList.remove("popup_opened");
+    popUpElement.removeEventListener("keydown", (event) => {
+        if (event.key === "Escape")
+            closePopup(popUpElement);
+    });
 }
 
-popUp.forEach((popup) => {
-    popup.addEventListener("click", (event) => {
-        if (event.target.classList.contains("popup__toggle"))
-            closePopup(popup);
-    })
-})
+popUps.forEach((popUp) => {
+    popUp.addEventListener("mousedown", (event) => {
+        if (event.target.classList.contains("popup__toggle") || event.target.classList.contains("popup"))
+            closePopup(popUp);
+    });
+});
 
 openProfilePopUp.addEventListener("click", () => {
-    openPopup(profilePopUp);
     profileNameInput.value = profileName.textContent;
     profileJobInput.value = profileJob.textContent;
+    openPopup(profilePopUp);
 });
 
 openCardPopUp.addEventListener("click", () => {
