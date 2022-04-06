@@ -16,12 +16,7 @@ const cardNameInput = cardPopUp.querySelector(".card-name-input");
 const cardLinkInput = cardPopUp.querySelector(".card-link-input");
 const cardForm = cardPopUp.querySelector(".card-form");
 
-<<<<<<< HEAD
 const imagePopUp = document.querySelector(".image-popup");
-=======
-
-const imagePopUps = document.querySelector(".image-popup");
->>>>>>> b5f831acd50dc523ae4f5a0732813abe221867cd
 const image = imagePopUp.querySelector(".popup__image");
 const imageTitle = imagePopUp.querySelector(".popup__image-title");
 
