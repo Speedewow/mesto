@@ -28,9 +28,12 @@ function hasInvalidInput(inputList) {
 
 function toggleButtonState(inputList, buttonElement, obj) {
     if (hasInvalidInput(inputList)) {
-        buttonElement.classList.add(obj.inactiveButtonClass)
+        buttonElement.classList.add(obj.inactiveButtonClass),
+            buttonElement.setAttribute("disabled", true);
+
     } else {
-        buttonElement.classList.remove(obj.inactiveButtonClass)
+        buttonElement.classList.remove(obj.inactiveButtonClass),
+            buttonElement.removeAttribute("disabled");
     }
 }
 
@@ -56,3 +59,12 @@ const enableValidation = (obj) => {
         setEventListeners(formElement, obj);
     });
 };
+
+enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit-button',
+    inactiveButtonClass: 'popup__submit-button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+});
