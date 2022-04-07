@@ -51,12 +51,12 @@ const initialCards = [{
 
 function openPopup(popUpElement) {
     popUpElement.classList.add("popup_opened");
-    popUpElement.addEventListener("keydown", closePopUpByEscape);
+    document.addEventListener("keydown", closePopUpByEscape);
 };
 
 function closePopup(popUpElement) {
     popUpElement.classList.remove("popup_opened");
-    popUpElement.removeEventListener("keydown", closePopUpByEscape);
+    document.removeEventListener("keydown", closePopUpByEscape);
 };
 
 function closePopUpByEscape(event) {
