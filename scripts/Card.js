@@ -1,79 +1,64 @@
-const cardTemplate = document.querySelector(".card-template");
-const cardPopUp = document.querySelector(".card-popup");
-const cardContainer = document.querySelector(".cards");
-const cardNameInput = cardPopUp.querySelector(".card-name-input");
-const cardLinkInput = cardPopUp.querySelector(".card-link-input");
-const cardForm = cardPopUp.querySelector(".card-form");
-const cardSaveButton = cardPopUp.querySelector(".popup__submit-button")
+const imagePopUp = document.querySelector(".image-popup");
+const image = imagePopUp.querySelector(".popup__image");
+const imageTitle = imagePopUp.querySelector(".popup__image-title");
 
-const initialCards = [{
-        name: "Архыз",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-        name: "Челябинская область",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-        name: "Иваново",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-        name: "Камчатка",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-        name: "Холмогорский район",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-        name: "Байкал",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    },
-];
+import openPopup from "./index.js";
 
-const createCard = (cardName, cardLink) => {
-    const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
-    const cardImage = cardElement.querySelector(".card__image");
-    const cardLikeButton = cardElement.querySelector(".card__button");
-    const cardDeleteButton = cardElement.querySelector(".card__delete-button");
-    const cardTitle = cardElement.querySelector(".card__title");
-    cardTitle.textContent = cardName;
-    cardImage.src = cardLink;
-    cardImage.alt = cardName;
-    cardLikeButton.addEventListener("click", () => {
-        cardLikeButton.classList.toggle("card__button_active");
-    });
-    cardDeleteButton.addEventListener("click", () => {
-        cardElement.classList.add("card_deleted");
-    });
-    cardImage.addEventListener("click", () => {
+class Card {
+    constructor(cardSelector) {
+        this._cardSelector = cardSelector;
+    }
+
+    _getTemplate() {
+        const cardElement = document
+            .querySelector(this._cardSelector)
+            .content
+            .querySelector('.card')
+            .cloneNode(true);
+
+        return cardElement;
+    }
+
+    _getLike() {
+        this._element.querySelector(".card__button").classList.toggle("card__button_active");
+    }
+
+    _deleteCard() {
+        this._element.classList.add("card_deleted");
+    }
+
+    _handleOpenPopup() {
+        image.src = this._link;
+        imageTitle.textContent = this._name;
+        image.alt = this._name;
         openPopup(imagePopUp);
-        image.src = cardLink;
-        imageTitle.textContent = cardName;
-        image.alt = cardName;
-    });
-    return cardElement;
-};
+    }
 
+    _setEventListeners() {
+        this._element.querySelector('.card__image').addEventListener('click', () => {
+            this._handleOpenPopup();
+        });
+        this._element.querySelector(".card__button").addEventListener('click', () => {
+            this._getLike();
+        });
+        this._element.querySelector(".card__delete-button").addEventListener('click', () => {
+            this._deleteCard();
+        });
+    }
+}
 
-const cards = initialCards.map((card) => {
-    return createCard(card.name, card.link);
-});
-
-cardContainer.append(...cards);
-
-const newCard = (name, link) => {
-    cardContainer.prepend(createCard(name, link));
-};
-
-function handleCardFormSave(evt) {
-    evt.preventDefault();
-    closePopup(cardPopUp);
-    newCard(cardNameInput.value, cardLinkInput.value);
-    cardForm.reset();
-    cardSaveButton.setAttribute("disabled", true);
-    cardSaveButton.classList.add("popup__submit-button_disabled");
-};
-
-cardForm.addEventListener("submit", handleCardFormSave);
+export default class DefaultCards extends Card {
+    constructor(data, cardSelector) {
+        super(cardSelector);
+        this._name = data.name;
+        this._link = data.link;
+    }
+    generateCard() {
+        this._element = super._getTemplate();
+        super._setEventListeners();
+        this._element.querySelector('.card__image').src = this._link;
+        this._element.querySelector('.card__image').alt = this._name;
+        this._element.querySelector('.card__title').textContent = this._name;
+        return this._element;
+    }
+}
