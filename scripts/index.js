@@ -1,3 +1,6 @@
+import FormValidator from "./FormValidator.js";
+import DefaultCards from "./Card.js";
+
 const popUps = document.querySelectorAll(".popup");
 
 const openProfilePopUp = document.querySelector(".profile__edit-button");
@@ -11,16 +14,11 @@ const profileSaveButton = profilePopUp.querySelector(".popup__submit-button")
 
 const openCardPopUp = document.querySelector(".profile__button");
 const cardContainer = document.querySelector(".cards");
-const cardTemplate = document.querySelector(".card-template");
 const cardPopUp = document.querySelector(".card-popup");
 const cardNameInput = cardPopUp.querySelector(".card-name-input");
 const cardLinkInput = cardPopUp.querySelector(".card-link-input");
 const cardForm = cardPopUp.querySelector(".card-form");
 const cardSaveButton = cardPopUp.querySelector(".popup__submit-button")
-
-const imagePopUp = document.querySelector(".image-popup");
-const image = imagePopUp.querySelector(".popup__image");
-const imageTitle = imagePopUp.querySelector(".popup__image-title");
 
 const initialCards = [{
         name: "Архыз",
@@ -48,8 +46,19 @@ const initialCards = [{
     },
 ];
 
+const formSettings = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit-button',
+    inactiveButtonClass: 'popup__submit-button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+};
 
-function openPopup(popUpElement) {
+const profileValidation = new FormValidator(formSettings, profileForm);
+const cardValidation = new FormValidator(formSettings, cardForm);
+
+export default function openPopup(popUpElement) {
     popUpElement.classList.add("popup_opened");
     document.addEventListener("keydown", closePopUpByEscape);
 };
@@ -79,12 +88,13 @@ openProfilePopUp.addEventListener("click", () => {
     openPopup(profilePopUp);
     profileSaveButton.removeAttribute("disabled");
     profileSaveButton.classList.remove("popup__submit-button_disabled");
+    profileValidation.enableValidation();
 });
 
 openCardPopUp.addEventListener("click", () => {
     openPopup(cardPopUp);
+    cardValidation.enableValidation();
 });
-
 
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
@@ -95,45 +105,18 @@ function handleProfileFormSubmit(evt) {
 
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 
-const createCard = (cardName, cardLink) => {
-    const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
-    const cardImage = cardElement.querySelector(".card__image");
-    const cardLikeButton = cardElement.querySelector(".card__button");
-    const cardDeleteButton = cardElement.querySelector(".card__delete-button");
-    const cardTitle = cardElement.querySelector(".card__title");
-    cardTitle.textContent = cardName;
-    cardImage.src = cardLink;
-    cardImage.alt = cardName;
-    cardLikeButton.addEventListener("click", () => {
-        cardLikeButton.classList.toggle("card__button_active");
-    });
-    cardDeleteButton.addEventListener("click", () => {
-        cardElement.classList.add("card_deleted");
-    });
-    cardImage.addEventListener("click", () => {
-        openPopup(imagePopUp);
-        image.src = cardLink;
-        imageTitle.textContent = cardName;
-        image.alt = cardName;
-    });
-    return cardElement;
-};
-
-
-const cards = initialCards.map((card) => {
-    return createCard(card.name, card.link);
+initialCards.forEach((item) => {
+    const card = new DefaultCards(item, '.card-template');
+    const cardElement = card.generateCard();
+    cardContainer.append(cardElement);
 });
-
-cardContainer.append(...cards);
-
-const newCard = (name, link) => {
-    cardContainer.prepend(createCard(name, link));
-};
 
 function handleCardFormSave(evt) {
     evt.preventDefault();
     closePopup(cardPopUp);
-    newCard(cardNameInput.value, cardLinkInput.value);
+    const card = new DefaultCards({ name: cardNameInput.value, link: cardLinkInput.value }, '.card-template');
+    const cardElement = card.generateCard();
+    cardContainer.prepend(cardElement);
     cardForm.reset();
     cardSaveButton.setAttribute("disabled", true);
     cardSaveButton.classList.add("popup__submit-button_disabled");
