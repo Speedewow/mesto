@@ -37,6 +37,11 @@ export default class FormValidator {
         });
     };
 
+    toggleButtonRemove(buttonElement) {
+        buttonElement.classList.remove(this._inactiveButtonClass),
+            buttonElement.removeAttribute("disabled");
+    }
+
 
     _toggleButtonState(inputList, buttonElement) {
         if (this._hasInvalidInput(inputList)) {
@@ -44,10 +49,11 @@ export default class FormValidator {
                 buttonElement.setAttribute("disabled", true);
 
         } else {
-            buttonElement.classList.remove(this._inactiveButtonClass),
-                buttonElement.removeAttribute("disabled");
+            this.toggleButtonRemove(buttonElement);
         };
     };
+
+
 
     _setEventListeners = () => {
         const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));

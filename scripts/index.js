@@ -1,5 +1,5 @@
 import FormValidator from "./FormValidator.js";
-import DefaultCards from "./Card.js";
+import { DefaultCards, initialCards } from "./utils.js";
 
 const popUps = document.querySelectorAll(".popup");
 
@@ -20,32 +20,6 @@ const cardLinkInput = cardPopUp.querySelector(".card-link-input");
 const cardForm = cardPopUp.querySelector(".card-form");
 const cardSaveButton = cardPopUp.querySelector(".popup__submit-button")
 
-const initialCards = [{
-        name: "Архыз",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-        name: "Челябинская область",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-        name: "Иваново",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-        name: "Камчатка",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-        name: "Холмогорский район",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-        name: "Байкал",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    },
-];
-
 const formSettings = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -56,7 +30,9 @@ const formSettings = {
 };
 
 const profileValidation = new FormValidator(formSettings, profileForm);
+profileValidation.enableValidation();
 const cardValidation = new FormValidator(formSettings, cardForm);
+cardValidation.enableValidation();
 
 export default function openPopup(popUpElement) {
     popUpElement.classList.add("popup_opened");
@@ -86,14 +62,11 @@ openProfilePopUp.addEventListener("click", () => {
     profileNameInput.value = profileName.textContent;
     profileJobInput.value = profileJob.textContent;
     openPopup(profilePopUp);
-    profileSaveButton.removeAttribute("disabled");
-    profileSaveButton.classList.remove("popup__submit-button_disabled");
-    profileValidation.enableValidation();
+    profileValidation.toggleButtonRemove(profileSaveButton);
 });
 
 openCardPopUp.addEventListener("click", () => {
     openPopup(cardPopUp);
-    cardValidation.enableValidation();
 });
 
 function handleProfileFormSubmit(evt) {
