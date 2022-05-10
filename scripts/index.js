@@ -51,6 +51,12 @@ function closePopUpByEscape(event) {
     };
 };
 
+function createCard(arr) {
+    const card = new DefaultCards(arr, '.card-template');
+    const cardElement = card.generateCard();
+    cardContainer.prepend(cardElement);
+}
+
 popUps.forEach((popUp) => {
     popUp.addEventListener("mousedown", (event) => {
         if (event.target.classList.contains("popup__toggle") || event.target.classList.contains("popup"))
@@ -79,20 +85,15 @@ function handleProfileFormSubmit(evt) {
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 initialCards.forEach((item) => {
-    const card = new DefaultCards(item, '.card-template');
-    const cardElement = card.generateCard();
-    cardContainer.append(cardElement);
+    createCard(item);
 });
 
 function handleCardFormSave(evt) {
     evt.preventDefault();
     closePopup(cardPopUp);
-    const card = new DefaultCards({ name: cardNameInput.value, link: cardLinkInput.value }, '.card-template');
-    const cardElement = card.generateCard();
-    cardContainer.prepend(cardElement);
+    createCard({ name: cardNameInput.value, link: cardLinkInput.value });
     cardForm.reset();
-    cardSaveButton.setAttribute("disabled", true);
-    cardSaveButton.classList.add("popup__submit-button_disabled");
+    cardValidation.toggleButtonAdd(cardSaveButton);
 };
 
 cardForm.addEventListener("submit", handleCardFormSave);
