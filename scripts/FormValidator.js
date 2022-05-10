@@ -42,18 +42,18 @@ export default class FormValidator {
             buttonElement.removeAttribute("disabled");
     }
 
+    toggleButtonAdd(buttonElement) {
+        buttonElement.classList.add(this._inactiveButtonClass),
+            buttonElement.setAttribute("disabled", true);
+    }
 
     _toggleButtonState(inputList, buttonElement) {
         if (this._hasInvalidInput(inputList)) {
-            buttonElement.classList.add(this._inactiveButtonClass),
-                buttonElement.setAttribute("disabled", true);
-
+            this.toggleButtonAdd(buttonElement);
         } else {
             this.toggleButtonRemove(buttonElement);
         };
     };
-
-
 
     _setEventListeners = () => {
         const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
