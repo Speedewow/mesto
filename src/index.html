@@ -5,17 +5,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./page/index.css" />
     <title>mesto</title>
 </head>
 
 <body class="root">
     <header class="header">
-        <img class="header__logo" src="./images/logo.svg" alt="Логотип" />
+        <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип" />
     </header>
     <main class="main">
         <section class="profile">
-            <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар" />
+            <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар" />
             <div class="profile__info">
                 <h1 class="profile__title">Жак Ив Кусто</h1>
                 <button class="profile__edit-button"></button>
@@ -49,8 +48,8 @@
                 <fieldset class="popup__fieldset">
                     <input class="popup__input profile-name-input" type="text" id="profile-name" placeholder="Введите имя" autocomplete="off" minlength="2" maxlength="40" required/>
                     <span class="popup__error profile-name-error"></span>
-                    <input class="popup__input profile-job-input" type="text" id="profile-job" placeholder="Введите профессию" autocomplete="off" minlength="2" maxlength="200" required/>
-                    <span class="popup__error profile-job-error"></span>
+                    <input class="popup__input profile-info-input" type="text" id="profile-info" placeholder="Введите профессию" autocomplete="off" minlength="2" maxlength="200" required/>
+                    <span class="popup__error profile-info-error"></span>
                 </fieldset>
                 <button class="popup__submit-button" type="submit">Сохранить</button>
             </form>
@@ -80,10 +79,6 @@
         </div>
 
     </section>
-    <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/Card.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
-    <script type="module" src="./scripts/utils.js"></script>
 </body>
 
 </html>
