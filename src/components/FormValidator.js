@@ -37,21 +37,21 @@ export default class FormValidator {
         });
     };
 
-    toggleButtonRemove(buttonElement) {
+    _toggleButtonRemove(buttonElement) {
         buttonElement.classList.remove(this._inactiveButtonClass),
             buttonElement.removeAttribute("disabled");
     }
 
-    toggleButtonAdd(buttonElement) {
+    _toggleButtonAdd(buttonElement) {
         buttonElement.classList.add(this._inactiveButtonClass),
             buttonElement.setAttribute("disabled", true);
     }
 
     _toggleButtonState(inputList, buttonElement) {
         if (this._hasInvalidInput(inputList)) {
-            this.toggleButtonAdd(buttonElement);
+            this._toggleButtonAdd(buttonElement);
         } else {
-            this.toggleButtonRemove(buttonElement);
+            this._toggleButtonRemove(buttonElement);
         };
     };
 
@@ -73,4 +73,12 @@ export default class FormValidator {
         });
         this._setEventListeners();
     };
+
+    resetValidation(buttonElement) {
+        this._inputList = this._formElement.querySelectorAll(".popup__input")
+        this._inputList.forEach((inputElement) => {
+            this._toggleButtonState(Array.from(this._inputList), buttonElement);
+            this._hideInputError(inputElement);
+        });
+    }
 };
