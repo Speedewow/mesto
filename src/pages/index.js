@@ -51,10 +51,11 @@ profileValidation.enableValidation();
 const cardValidation = new FormValidator(formSettings, cardForm);
 cardValidation.enableValidation();
 
+const userInfo = new UserInfo();
+
 const newProfile = new PopupWhithForm({
     popupSelector: profilePopup,
     handleFormSubmit: (formData) => {
-        const userInfo = new UserInfo(formData);
         userInfo.setUserInfo(formData.name, formData.info);
     }
 });
@@ -69,7 +70,6 @@ const newCard = new PopupWhithForm({
 newCard.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
-    const userInfo = new UserInfo({ name: profileName.textContent, info: profileInfo.textContent })
     profileNameInput.value = userInfo.getUserInfo().profileNameInput
     profileInfoInput.value = userInfo.getUserInfo().profileInfoInput
     newProfile.openPopup();
