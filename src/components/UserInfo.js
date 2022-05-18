@@ -1,4 +1,4 @@
-import { profileNameInput, profileInfoInput, profileName, profileInfo } from "./utils.js"
+import { profileName, profileInfo } from "../utils/utils.js";
 
 export default class UserInfo {
     constructor(data) {
@@ -7,14 +7,16 @@ export default class UserInfo {
     };
 
     getUserInfo() {
-        profileNameInput.value = profileName.textContent;
-        profileInfoInput.value = profileInfo.textContent;
-
+        const userInfo = {
+            profileNameInput: this._name,
+            profileInfoInput: this._info
+        }
+        return userInfo
     };
 
-    setUserInfo() {
-        profileName.textContent = profileNameInput.value;
-        profileInfo.textContent = profileInfoInput.value;
+    setUserInfo(name, info) {
+        profileName.textContent = name;
+        profileInfo.textContent = info;
     };
 
 }
