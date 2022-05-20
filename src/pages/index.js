@@ -1,7 +1,7 @@
 import "./index.css";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
-import DefaultCards from "../components/Card.js"
+import Card from "../components/Card.js"
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWhithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
@@ -10,8 +10,6 @@ import { formSettings } from "../form-settings/formSettings.js";
 import {
     profilePopup,
     profileEditButton,
-    profileName,
-    profileInfo,
     profileNameInput,
     profileInfoInput,
     profileForm,
@@ -25,7 +23,7 @@ import {
 from "../utils/utils.js";
 
 function createCard(item) {
-    const card = new DefaultCards(item, '.card-template', () => {
+    const card = new Card(item, '.card-template', () => {
         imagePopups.openPopup({ name: item.name, link: item.link });
     });
     const cardElement = card.generateCard();
