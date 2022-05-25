@@ -18,7 +18,11 @@ import {
     cardPopup,
     cardForm,
     cardSaveButton,
-    imagePopup
+    imagePopup,
+    avatarEditButton,
+    avatarPopup,
+    avatarForm,
+    avatarSaveButton
 }
 from "../utils/utils.js";
 
@@ -49,6 +53,9 @@ profileValidation.enableValidation();
 const cardValidation = new FormValidator(formSettings, cardForm);
 cardValidation.enableValidation();
 
+const avatarValidation = new FormValidator(formSettings, avatarForm);
+avatarValidation.enableValidation();
+
 const userInfo = new UserInfo();
 
 const newProfile = new PopupWhithForm({
@@ -67,6 +74,9 @@ const newCard = new PopupWhithForm({
 })
 newCard.setEventListeners();
 
+const newAvatar = new PopupWhithForm({ popupSelector: avatarPopup })
+newAvatar.setEventListeners()
+
 profileEditButton.addEventListener("click", () => {
     profileNameInput.value = userInfo.getUserInfo().profileNameInput
     profileInfoInput.value = userInfo.getUserInfo().profileInfoInput
@@ -79,3 +89,8 @@ cardAddButton.addEventListener("click", () => {
     newCard.openPopup();
     cardValidation.resetValidation(cardSaveButton);
 });
+
+avatarEditButton.addEventListener("click", () => {
+    newAvatar.openPopup()
+    avatarValidation.resetValidation(avatarSaveButton);
+})

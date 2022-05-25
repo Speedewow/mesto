@@ -11,6 +11,10 @@ const cardPopup = document.querySelector(".card-popup");
 const cardForm = cardPopup.querySelector(".card-form");
 const cardSaveButton = cardPopup.querySelector(".popup__submit-button")
 const imagePopup = document.querySelector(".image-popup");
+const avatarEditButton = document.querySelector(".profile__avatar-edit-button");
+const avatarPopup = document.querySelector(".avatar-popup");
+const avatarForm = avatarPopup.querySelector(".avatar-form");
+const avatarSaveButton = avatarPopup.querySelector(".popup__submit-button")
 
 
 export {
@@ -26,5 +30,9 @@ export {
     cardPopup,
     cardForm,
     cardSaveButton,
-    imagePopup
+    imagePopup,
+    avatarEditButton,
+    avatarPopup,
+    avatarForm,
+    avatarSaveButton
 };
