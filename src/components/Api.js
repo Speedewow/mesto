@@ -13,20 +13,11 @@ export default class Api {
     }
 
     getUserInfo() {
-        fetch(`${this.link}/users/me`, {
+        return fetch(`${this.link}/users/me`, {
                 method: "GET",
                 headers: this.headers
             })
             .then(handleResponse)
-            .then((data) => {
-                document.querySelector(".profile__image").src = data.avatar;
-                document.querySelector(".profile__title").textContent = data.name;
-                document.querySelector(".profile__subtitle").textContent = data.about
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-
     }
 
     getInitialCard() {

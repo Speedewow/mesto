@@ -20,7 +20,6 @@ export default class PopupWhithForm extends Popup {
         super.setEventListeners()
         this._popupSelector.addEventListener('submit', () => {
             this._handleFormSubmit(this._getInputValues());
-            this.closePopup();
         });
     }
 
