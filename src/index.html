@@ -14,11 +14,14 @@
     </header>
     <main class="main">
         <section class="profile">
-            <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар" />
+            <div class="profile__avatar">
+                <button class="profile__avatar-edit-button"></button>
+                <img class="profile__image" src="" alt="Аватар" />
+            </div>
             <div class="profile__info">
-                <h1 class="profile__title">Жак Ив Кусто</h1>
+                <h1 class="profile__title"></h1>
                 <button class="profile__edit-button"></button>
-                <p class="profile__subtitle">Исследователь океана</p>
+                <p class="profile__subtitle"></p>
             </div>
             <button class="profile__button"></button>
         </section>
@@ -30,7 +33,10 @@
               <img class="card__image" alt="Картинка" src="#" />
               <div class="card__container">
                 <h2 class="card__title"></h2>
-                <button class="card__button"></button>
+                <div class="card__like-container">
+                    <button class="card__button"></button>
+                    <span class="card__like-counter"></span>
+                </div>
               </div>
             </li>
           </template>
@@ -40,6 +46,19 @@
     <footer class="footer">
         <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
+    <section class="popup avatar-popup">
+        <div class="popup__container">
+            <button class="popup__toggle"></button>
+            <form class="popup__form avatar-form" id="avatar-form" novalidate>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <fieldset class="popup__fieldset">
+                    <input class="popup__input avatar-link-input" type="url" name="link" id="avatar-link" placeholder="Ссылка на картинку" autocomplete="off" required/>
+                    <span class="popup__error avatar-link-error"></span>
+                </fieldset>
+                <button class="popup__submit-button" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </section>
     <section class="popup profile-popup">
         <div class="popup__container">
             <button class="popup__toggle"></button>
@@ -66,7 +85,16 @@
                     <input class="popup__input card-link-input" type="url" name="link" id="card-link" placeholder="Ссылка на картинку" autocomplete="off" required/>
                     <span class="popup__error card-link-error"></span>
                 </fieldset>
-                <button class="popup__submit-button " type="submit">Создать</button>
+                <button class="popup__submit-button" type="submit">Создать</button>
+            </form>
+        </div>
+    </section>
+    <section class="popup confrim-popup">
+        <div class="popup__container">
+            <button class="popup__toggle"></button>
+            <form class="popup__form">
+                <h2 class="popup__title">Вы уверены?</h2>
+                <button class="popup__submit-button popup__delete-button" type="submit">Да</button>
             </form>
         </div>
     </section>
@@ -77,7 +105,6 @@
             <img class="popup__image" alt="Картинка" src="#" />
             <h2 class="popup__image-title"></h2>
         </div>
-
     </section>
 </body>
 
