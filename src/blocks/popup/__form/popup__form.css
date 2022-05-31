@@ -1,4 +1,5 @@
 .popup__form {
+    position: relative;
     width: 430px;
     background-color: #fff;
     border-radius: 3%;
