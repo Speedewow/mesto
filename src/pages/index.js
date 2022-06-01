@@ -14,9 +14,6 @@ import {
     profileEditButton,
     profileNameInput,
     profileInfoInput,
-    profileAvatar,
-    profileName,
-    profileInfo,
     profileForm,
     profileSaveButton,
     cardAddButton,
@@ -30,12 +27,12 @@ import {
     avatarSaveButton,
     confrimPopup,
     confrimSaveButton,
-    cardContainer
 }
 from "../utils/utils.js";
 
+
 function createCard(item) {
-    const card = new Card(item, '.card-template', addLike, deleteLike,
+    const card = new Card(item, '.card-template', addLike, deleteLike, getUserId,
         () => {
             popupConfrim.openPopup();
             popupConfrim.getId(item._id);
@@ -55,13 +52,19 @@ function renderLoading(isLoading, button, defaultText) {
     }
 };
 
+const cardList = new Section({
+        renderer: (item) => {
+            cardList.addItem(createCard(item));
+        }
+    },
+    ".cards")
+
 const api = new Api(config);
 
 api.getUserInfo()
     .then((data) => {
-        profileAvatar.src = data.avatar;
-        profileName.textContent = data.name;
-        profileInfo.textContent = data.about
+        userInfo.setUserAvatar(data.avatar)
+        userInfo.setUserInfo(data.name, data.about);
     })
     .catch((err) =>
         console.log(err)
@@ -69,14 +72,7 @@ api.getUserInfo()
 
 api.getInitialCard()
     .then((items) => {
-        const cardList = new Section({
-                items,
-                renderer: (item) => {
-                    cardList.addItem(createCard(item));
-                }
-            },
-            ".cards");
-        cardList.renderItems();
+        cardList.renderItems(items);
     })
     .catch((err) =>
         console.log(err)
@@ -87,6 +83,8 @@ const deleteCard = id => api.deleteCard(id);
 const addLike = id => api.addLike(id);
 
 const deleteLike = id => api.deleteLike(id);
+
+const getUserId = () => api.getUserInfo()
 
 const popupConfrim = new PopupConfrim({
     popupSelector: confrimPopup,
@@ -107,10 +105,12 @@ const newCard = new PopupWhithForm({
     handleFormSubmit: (formData) => {
         renderLoading(true, cardSaveButton)
         api.createNewCard(formData.name, formData.link)
-            .then((data) => cardContainer.prepend(createCard(data)))
+            .then((data) => {
+                cardList.addItem(createCard(data))
+                newCard.closePopup();
+            })
             .catch((err) => console.log(err))
             .finally(() => {
-                newCard.closePopup();
                 renderLoading(false, cardSaveButton, "Создать")
             })
     }
@@ -121,11 +121,13 @@ const newProfile = new PopupWhithForm({
     popupSelector: profilePopup,
     handleFormSubmit: (formData) => {
         renderLoading(true, profileSaveButton)
-        userInfo.setUserInfo(formData.name, formData.info);
         api.setUserInfo(formData.name, formData.info)
+            .then(() => {
+                userInfo.setUserInfo(formData.name, formData.info);
+                newProfile.closePopup();
+            })
             .catch((err) => console.log(err))
             .finally(() => {
-                newProfile.closePopup();
                 renderLoading(false, profileSaveButton, "Сохранить")
             });
     }
@@ -137,10 +139,12 @@ const newAvatar = new PopupWhithForm({
     handleFormSubmit: (formData) => {
         renderLoading(true, avatarSaveButton)
         api.createNewAvatar(formData.link)
-            .then((link) => profileAvatar.src = link.avatar)
+            .then((link) => {
+                userInfo.setUserAvatar(link.avatar)
+                newAvatar.closePopup();
+            })
             .catch((err) => console.log(err))
             .finally(() => {
-                newAvatar.closePopup();
                 renderLoading(false, avatarSaveButton, "Сохранить")
             });
     }

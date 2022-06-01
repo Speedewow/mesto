@@ -1,9 +1,10 @@
 export default class Card {
-    constructor(data, cardSelector, handleAddLike, handleDeleteLike, confrimPopup, handleCardClick) {
+    constructor(data, cardSelector, handleAddLike, handleDeleteLike, getUserId, confrimPopup, handleCardClick) {
         this._cardSelector = cardSelector;
         this._handleAddLike = handleAddLike;
         this._handleDeleteLike = handleDeleteLike;
         this._handleCardClick = handleCardClick;
+        this._userId = getUserId;
         this._deletePopup = confrimPopup;
         this._data = data
     }
@@ -38,35 +39,38 @@ export default class Card {
         return likeCounter;
     }
 
-    _getLikeList() {
-        this._likeCounter.textContent = this._data.likes.length;
-        if (this._data.likes.some(element => element._id === "f8d213fbf6ca8f17bbc87d9d")) {
-            this._likeButton.classList.add("card__button_active");
-        }
+    _getLikeLenght(arr) {
+        this._likeCounter.textContent = arr.likes.length;
     }
 
-    _controleDeleteButton() {
-        if (this._data.owner._id !== "f8d213fbf6ca8f17bbc87d9d") {
-            this._deleteButton.remove();
-        }
+    _setStartSettings() {
+        this._getLikeLenght(this._data)
+        this._userId()
+            .then(data => {
+                if (this._data.likes.some(element => element._id === data._id)) {
+                    this._likeButton.classList.add("card__button_active");
+                }
+                if (this._data.owner._id !== data._id) {
+                    this._deleteButton.remove();
+                }
+            })
+            .catch(err => console.log(err));
     }
 
     _addLike() {
-        const id = this._data._id
-        this._likeButton.classList.add("card__button_active");
-        this._handleAddLike(id)
+        this._handleAddLike(this._data._id)
             .then((arr) => {
-                this._likeCounter.textContent = arr.likes.length;
+                this._likeButton.classList.add("card__button_active");
+                this._getLikeLenght(arr)
             })
             .catch(err => console.log(err));
     }
 
     _deleteLike() {
-        const id = this._data._id
-        this._likeButton.classList.remove("card__button_active");
-        this._handleDeleteLike(id)
+        this._handleDeleteLike(this._data._id)
             .then((arr) => {
-                this._likeCounter.textContent = arr.likes.length;
+                this._likeButton.classList.remove("card__button_active");
+                this._getLikeLenght(arr)
             })
             .catch(err => console.log(err));
     }
@@ -98,8 +102,7 @@ export default class Card {
         this._deleteButton = this._getDeleteButton();
         this._likeCounter = this._getLikeCounter();
         this._setEventListeners();
-        this._getLikeList();
-        this._controleDeleteButton();
+        this._setStartSettings()
         return this._element;
     }
 }

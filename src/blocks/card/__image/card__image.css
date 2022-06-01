@@ -2,6 +2,7 @@
     object-fit: cover;
     width: 282px;
     height: 282px;
+    min-height: 282px;
     border-radius: 3% 3% 0 0;
     margin: 0;
     padding: 0;
