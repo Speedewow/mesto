@@ -4,6 +4,7 @@
 
 * Кто я? 
 * Как я сделан? 
+* Из чего я? 
 * Где меня найти? 
 
 **О чем я?** 
@@ -12,10 +13,24 @@
 
 **Как я сделан?** 
 
-Я - бессонные ночи, горы пота и боли, часы интеллектуального недомогания. Если без юмора :), то были применены флексы, гриды, относительные величины, сайт адаптивен (проверьте сами (: ). Впервые мною был использован JS, вроде пока удачно. Ну и конечно, куда же без БЭМа!  
+Я - бессонные ночи, горы пота и боли, часы интеллектуального недомогания. Были применены флексы, гриды, относительные величины, сайт адаптивен (проверьте сами 😊). ООП, классы, REST API, промисы, асинхронность - это все про меня. Ну и конечно, куда же без БЭМа!  
+
+**Из чего я?** 
+
+<div>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-plain-wordmark.svg"  title="CSS3" alt="CSS" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="JavaScript" alt="JavaScript" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg" title="Git" **alt="Git" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/figma/figma-original.svg" title="Figma" **alt="Figma" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/webpack/webpack-original.svg" title="Webpack" **alt="webpack" width="40" height="40"/>&nbsp;
+ <img src="https://github.com/devicons/devicon/blob/master/icons/vscode/vscode-original.svg" title="Vscode" **alt="vscode" width="40" height="40"/>&nbsp;
+</div>
+
+#
 
 **Где меня найти?** 
 
-* [Ссылка на проект]https://speedewow.github.io/mesto/ 
+* https://speedewow.github.io/mesto/ 
 
   
