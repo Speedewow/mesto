@@ -1,10 +1,3 @@
-const handleResponse = (res) => {
-    if (res.ok) {
-        return res.json();
-    }
-    return Promise.reject('Ошибка')
-}
-
 export default class Api {
     constructor(config) {
         this.link = config.link;
@@ -12,12 +5,19 @@ export default class Api {
 
     }
 
+    _handleResponse = (res) => {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject('Ошибка')
+    }
+
     getUserInfo() {
         return fetch(`${this.link}/users/me`, {
                 method: "GET",
                 headers: this.headers
             })
-            .then(handleResponse)
+            .then(this._handleResponse)
     }
 
     getInitialCard() {
@@ -25,7 +25,7 @@ export default class Api {
                 method: "GET",
                 headers: this.headers
             })
-            .then(handleResponse)
+            .then(this._handleResponse)
     }
 
     setUserInfo(name, about) {
@@ -37,7 +37,7 @@ export default class Api {
                     about: `${about}`
                 })
             })
-            .then(handleResponse)
+            .then(this._handleResponse)
 
     }
 
@@ -50,7 +50,7 @@ export default class Api {
                     link: `${link}`
                 })
             })
-            .then(handleResponse)
+            .then(this._handleResponse)
     }
 
     createNewAvatar(link) {
@@ -61,7 +61,7 @@ export default class Api {
                     avatar: `${link}`
                 })
             })
-            .then(handleResponse)
+            .then(this._handleResponse)
     }
 
     deleteCard(id) {
@@ -72,7 +72,7 @@ export default class Api {
                     _id: `${id}`
                 })
             })
-            .then(handleResponse)
+            .then(this._handleResponse)
     }
 
     addLike(id) {
@@ -83,7 +83,7 @@ export default class Api {
                     _id: `${id}`
                 })
             })
-            .then(handleResponse)
+            .then(this._handleResponse)
     }
 
     deleteLike(id) {
@@ -94,6 +94,6 @@ export default class Api {
                     _id: `${id}`
                 })
             })
-            .then(handleResponse)
+            .then(this._handleResponse)
     }
 }

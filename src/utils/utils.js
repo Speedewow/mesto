@@ -18,10 +18,6 @@ const avatarForm = avatarPopup.querySelector(".avatar-form");
 const avatarSaveButton = avatarPopup.querySelector(".popup__submit-button");
 const confrimPopup = document.querySelector(".confrim-popup");
 const confrimSaveButton = confrimPopup.querySelector(".popup__submit-button");
-const cardContainer = document.querySelector(".cards");
-
-
-
 
 export {
     profileEditButton,
@@ -43,6 +39,5 @@ export {
     avatarForm,
     avatarSaveButton,
     confrimPopup,
-    confrimSaveButton,
-    cardContainer
+    confrimSaveButton
 };

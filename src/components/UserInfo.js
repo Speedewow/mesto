@@ -1,4 +1,4 @@
-import { profileName, profileInfo } from "../utils/utils.js";
+import { profileName, profileInfo, profileAvatar } from "../utils/utils.js";
 
 export default class UserInfo {
     getUserInfo() {
@@ -7,6 +7,10 @@ export default class UserInfo {
             profileInfoInput: profileInfo.textContent
         }
         return userInfo
+    };
+
+    setUserAvatar(link) {
+        profileAvatar.src = link
     };
 
     setUserInfo(name, info) {
