@@ -17,7 +17,7 @@ const avatarPopup = document.querySelector(".avatar-popup");
 const avatarForm = avatarPopup.querySelector(".avatar-form");
 const avatarSaveButton = avatarPopup.querySelector(".popup__submit-button");
 const confrimPopup = document.querySelector(".confrim-popup");
-const confrimSaveButton = confrimPopup.querySelector(".popup__submit-button");
+const currentId = "f8d213fbf6ca8f17bbc87d9d";
 
 export {
     profileEditButton,
@@ -39,5 +39,5 @@ export {
     avatarForm,
     avatarSaveButton,
     confrimPopup,
-    confrimSaveButton
+    currentId
 };

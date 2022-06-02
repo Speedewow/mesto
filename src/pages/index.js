@@ -26,16 +26,19 @@ import {
     avatarForm,
     avatarSaveButton,
     confrimPopup,
-    confrimSaveButton,
+    currentId
 }
 from "../utils/utils.js";
 
 
 function createCard(item) {
-    const card = new Card(item, '.card-template', addLike, deleteLike, getUserId,
+    const card = new Card(item, '.card-template', addLike, deleteLike, currentId,
         () => {
             popupConfrim.openPopup();
-            popupConfrim.getId(item._id);
+            popupConfrim.handler(() =>
+                api.deleteCard(item._id)
+                .then(() => card.removeCard())
+                .catch(err => console.log(err)))
         },
         () => {
             imagePopups.openPopup({ name: item.name, link: item.link });
@@ -78,27 +81,9 @@ api.getInitialCard()
         console.log(err)
     );
 
-const deleteCard = id => api.deleteCard(id);
-
 const addLike = id => api.addLike(id);
 
 const deleteLike = id => api.deleteLike(id);
-
-const getUserId = () => api.getUserInfo()
-
-const popupConfrim = new PopupConfrim({
-    popupSelector: confrimPopup,
-    handleDeleteCard: (id) => {
-        renderLoading(true, confrimSaveButton)
-        deleteCard(id)
-            .catch(err => console.log(err))
-            .finally(() => {
-                location.reload()
-                renderLoading(false, confrimSaveButton, "Да")
-            })
-    }
-});
-popupConfrim.setEventListeners();
 
 const newCard = new PopupWhithForm({
     popupSelector: cardPopup,
@@ -150,6 +135,9 @@ const newAvatar = new PopupWhithForm({
     }
 })
 newAvatar.setEventListeners();
+
+const popupConfrim = new PopupConfrim(confrimPopup);
+popupConfrim.setEventListeners();
 
 const imagePopups = new PopupWithImage(imagePopup);
 imagePopups.setEventListeners();
