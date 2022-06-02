@@ -75,7 +75,7 @@ api.getUserInfo()
 
 api.getInitialCard()
     .then((items) => {
-        cardList.renderItems(items);
+        cardList.renderItems(items.reverse());
     })
     .catch((err) =>
         console.log(err)
