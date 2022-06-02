@@ -1,10 +1,10 @@
 export default class Card {
-    constructor(data, cardSelector, handleAddLike, handleDeleteLike, getUserId, confrimPopup, handleCardClick) {
+    constructor(data, cardSelector, handleAddLike, handleDeleteLike, currentId, confrimPopup, handleCardClick) {
         this._cardSelector = cardSelector;
         this._handleAddLike = handleAddLike;
         this._handleDeleteLike = handleDeleteLike;
         this._handleCardClick = handleCardClick;
-        this._userId = getUserId;
+        this._userId = currentId;
         this._deletePopup = confrimPopup;
         this._data = data
     }
@@ -45,16 +45,14 @@ export default class Card {
 
     _setStartSettings() {
         this._getLikeLenght(this._data)
-        this._userId()
-            .then(data => {
-                if (this._data.likes.some(element => element._id === data._id)) {
-                    this._likeButton.classList.add("card__button_active");
-                }
-                if (this._data.owner._id !== data._id) {
-                    this._deleteButton.remove();
-                }
-            })
-            .catch(err => console.log(err));
+
+        if (this._data.likes.some(element => element._id === this._userId)) {
+            this._likeButton.classList.add("card__button_active");
+        }
+        if (this._data.owner._id !== this._userId) {
+            this._deleteButton.remove();
+        }
+
     }
 
     _addLike() {
@@ -90,6 +88,10 @@ export default class Card {
             this._deletePopup()
         });
 
+    }
+
+    removeCard() {
+        this._element.remove();
     }
 
     generateCard() {

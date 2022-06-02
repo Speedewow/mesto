@@ -1,15 +1,22 @@
 import Popup from "./Popup";
 
 export default class PopupConfrim extends Popup {
-    constructor({ popupSelector, handleDeleteCard }) {
+    constructor(popupSelector) {
         super(popupSelector)
+
+    }
+
+    handler(handleDeleteCard) {
         this._handleDeleteCard = handleDeleteCard;
     }
 
-    getId(id) {
+    setEventListeners() {
+        super.setEventListeners()
         this._popupSelector.addEventListener('submit', (evt) => {
             evt.preventDefault();
-            this._handleDeleteCard(id)
+            this._handleDeleteCard()
+            this.closePopup()
+
         });
     }
 }
